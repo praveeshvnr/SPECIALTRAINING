@@ -93,17 +93,18 @@ def employeereg(request):
             return redirect('empreg')
 
 def employeeshow(request):
-    if request.session.has_key('brid'):
+    if request.session['brid'] == "":
+        return redirect('branchlog')
+    else:
         brid = request.session['brid']
-        if request.session.has_key('brid'):
-            brid = request.session['brid']
 
-            empty=employee.objects.filter(branchid=brid)
-            return render(request,'employeeshow.html',{'empty':empty})
+        empty=employee.objects.filter(branchid=brid)
+        return render(request,'employeeshow.html',{'empty':empty})
 
 def delete(request,id):
-    if request.session.has_key('brid'):
-        brid = request.session['brid']
+    if request.session['brid'] == "":
+        return redirect('branchlog')
+    else:
         employees=employee.objects.get(id=id)
         employees.delete()
         return redirect('employeeshow')
