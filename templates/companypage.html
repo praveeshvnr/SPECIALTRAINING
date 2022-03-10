@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div><div class="container">
+    <div class="row ">
+    
+    <div class="col-md-3 mt-4">
+        <div class="card bg-info" style="height: 400px;">
+            <img src="{{var.image.url}}" alt="a snow-capped mountain range" style="height: 200px;" />
+            <p>{{var.name}}</p>
+            <p>{{var.companytype}}</p>
+            <p>{{var.email}}</p>
+            <p>{{var.website}}</p>
+
+            
+        </div>
+    </div>
+    
+    </div>
+    <div class="col-md-3 mt-4">
+        <a href="{% url 'logout' %}">
+            <button  type="button" class="btn btn-danger w-100">logout</button>
+        </a>
+    </div>
+    </div>
+</div>
+{% endblock %}
