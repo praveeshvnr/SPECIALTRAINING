@@ -108,15 +108,18 @@ def delete(request,id):
         employees.delete()
         return redirect('employeeshow')
 def empedit(request,id):
-    if request.session.has_key('brid'):
+    if request.session['brid'] == "":
+        return redirect('branchlog')
+    else:
         brid = request.session['brid']
         mem=employee.objects.get(id=id)
         var=branch.objects.filter(id=brid)
         return render(request,'empedit.html',{'mem':mem,'var':var})
-
+    
 def update(request,id):
-    if request.session.has_key('brid'):
-        brid = request.session['brid']
+    if request.session['brid'] == "":
+        return redirect('branchlog')
+    else:
         if request.method == 'POST':
             employees=employee.objects.get(id=id)
             employees.name=request.POST.get('name',employees.name)
@@ -132,9 +135,13 @@ def update(request,id):
            
             employees.save()
             return redirect('employeeshow')
-
+        else:
+            return redirect('empedit')
+    
 
 def logout(request):
     request.session['brid']=""
     if request.session['brid'] == "":
         return redirect('branchlog')
+    else:
+        pass

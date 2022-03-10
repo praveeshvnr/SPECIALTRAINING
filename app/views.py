@@ -4,6 +4,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from .models import *
+from app1.models import *
 
 # Create your views here.
 def index(request):
@@ -92,9 +93,11 @@ def companysignup(request):
 
 @login_required(login_url='loginpage')
 def companypage(request):
+    
     x=User.objects.get(id=request.user.id)
     var=company.objects.get(userid=x)
-    return render(request,'companypage.html',{'var':var})
+    mem=branch.objects.filter(companyid=var)
+    return render(request,'companypage.html',{'var':var,'mem':mem})
 
 def logout(request):
     auth.logout(request)
