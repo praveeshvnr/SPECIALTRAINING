@@ -62,8 +62,9 @@ def empreg(request):
 
 
 def employeereg(request):
-    if request.session.has_key('brid'):
-        brid = request.session['brid']
+    if request.session['brid'] == "":
+        return redirect('branchlog')
+    else:
         try:
             if request.method =='POST':
                 name=request.POST['name']
@@ -78,7 +79,7 @@ def employeereg(request):
                 pin=request.POST['pin']
                 image=request.FILES['image']
 
-                x=branch.objects.get(branchname=branchname)
+                x=branch.objects.get(id=request.session['brid'])
 
                 if employee.objects.filter(name=name).exists():
                     return redirect('empreg')
