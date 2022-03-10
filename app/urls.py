@@ -15,6 +15,8 @@ urlpatterns=[
     re_path(r'^logout$', views.logout, name="logout"),
     
 
+    
+
 
     # re_path(r'^devissues/(?P<id>\d+)$', views.devissues, name='devissues'),
 

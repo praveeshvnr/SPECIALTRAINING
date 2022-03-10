@@ -3,15 +3,15 @@
 {% block content %}
 <div class="container">
     <div class="row row-cols-2 g-2 mt-5 pt-3">
-    {% for i in empty %}
+    <!-- {% for i in empty %}
 
     
         <div class="col-md-3">
             <div class="card bg-dark" style="height: 400px;">
                 <img src="{{i.image.url}}" alt="a snow-capped mountain range" style="height: 200px;" />
                 <div class="card-body">
-                    <p class="card-title text-white">{{i.fullname}}</p>
-                    <p class="card-title text-white">{{i.secondname}}</p>
+                    <p class="card-title text-white">{{i.name}}</p>
+                    <p class="card-title text-white">{{i.branchname}}</p>
                     <p class="card-title text-white">{{i.email}}</p>
                     
                     
@@ -28,11 +28,63 @@
                 </div>
             </div>
         </div>
+        {% endfor %} -->
+
+
         
+        <table class="table table-dark mt-4">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Branch name</th>
+                <th scope="col">phone</th>
+                <th scope="col">city</th>
+                <th scope="col">state</th>
+                <th scope="col">country</th>
+                <th scope="col">pin</th>
+                <th scope="col">image</th>
+                <th scope="col">Delet</th>
+                <th scope="col">Edit</th>
+               
+
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in empty %}
+              <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.branchname}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.city}}</td>
+                <td>{{i.state}}</td>
+                <td>{{i.country}}</td>
+                <td>{{i.pin}}</td>
+                <td><img src="{{i.image.url}}" alt="a snow-capped mountain range" style="height: 20px;" /></td>
+
+                <td><a href="delete/{{i.id}}">
+                    <button type="submit" class="btn btn-outline-danger">
+                        Delete
+                    </button>
+                </a></td>
+                <td> <a href="empedit/{{i.id}}">
+                    <button type="submit" class="btn btn-outline-warning">
+                        Edit
+                    </button>
+                </a></td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          
 
     
 
-    {% endfor %}
+   
 </div>
 
 </div>
