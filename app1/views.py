@@ -95,14 +95,18 @@ def employeereg(request):
 def employeeshow(request):
     if request.session.has_key('brid'):
         brid = request.session['brid']
+        if request.session.has_key('brid'):
+            brid = request.session['brid']
 
-        empty=employee.objects.filter(branchid=brid)
-        return render(request,'employeeshow.html',{'empty':empty})
+            empty=employee.objects.filter(branchid=brid)
+            return render(request,'employeeshow.html',{'empty':empty})
 
 def delete(request,id):
-    employees=employee.objects.get(id=id)
-    employees.delete()
-    return redirect('employeeshow')
+    if request.session.has_key('brid'):
+        brid = request.session['brid']
+        employees=employee.objects.get(id=id)
+        employees.delete()
+        return redirect('employeeshow')
 def empedit(request,id):
     if request.session.has_key('brid'):
         brid = request.session['brid']
@@ -128,3 +132,9 @@ def update(request,id):
            
             employees.save()
             return redirect('employeeshow')
+
+
+def logout(request):
+    request.session['brid']=""
+    if request.session['brid'] == "":
+        return redirect('branchlog')
