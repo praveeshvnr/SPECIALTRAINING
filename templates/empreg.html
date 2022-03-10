@@ -1,12 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    fghjkl
-</body>
-</html>
+{% extends 'basebranch.html' %} 
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-12 mt-3">
+            <div class="card p-3 border-danger">
+                <form action="employeereg" method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="row">
+
+                        <div class="col-md-12 mt-3">
+                            <center style="font-size:40px; font-weight: 600; color:red;"><u>Employee registration</u></center>
+
+                        </div>
+                       
+                        <div class="col-md-3 mt-3">
+                            <label for="">name</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="text" name="name" class="form-control">
+                        </div>
+                        
+           
+                        
+                        <div class="col-md-3 mt-3">
+                            <label for="">Email</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <label for="">Branch name</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <select name="branchname" id="" class="w-100" style="height: 40px;">
+                                {% for i in var %}
+                                <option value="{{i.branchname}}">{{i.branchname}}</option>
+                                {% endfor %}
+                            </select>
+                            
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <label for="">Password</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <label for="">Phone</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+                       
+                        <div class="col-md-3 mt-3">
+                            <label for="">City</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="text" name="city" class="form-control ">
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <label for="">State</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="text" name="state" class="form-control ">
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <label for="">Country</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="text" name="country" class="form-control ">
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <label for="">PIN</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="text" name="pin" class="form-control ">
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <label for="">Image</label>
+                        </div>
+                        <div class="col-md-9 mt-3">
+                            <input type="file" name="image" class="form-control">
+                        </div>
+                        
+                       
+                        <div class="col-md-12 mb-3 mt-3">
+
+                            <button type="submit" class="btn btn-primary w-100">signup</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3 mt-4">
+           
+        </div>
+    </div>
+</div>
+{% endblock%}

@@ -41,6 +41,7 @@ def branchlog(request):
     return render(request,'branchlog.html')
 
 def branchlogin(request):
+   
     if request.method=='POST':
         if branch.objects.filter(branchname=request.POST['branchname'],password=request.POST['password']).exists():
             member=branch.objects.get(branchname=request.POST['branchname'], password=request.POST['password'])
@@ -54,4 +55,46 @@ def branchlogin(request):
         return redirect('branchlog')
 
 def empreg(request):
-    return render(request,'empreg.html')
+    var=branch.objects.all()
+    return render(request,'empreg.html',{'var':var})
+
+
+def employeereg(request):
+    try:
+        if request.method =='POST':
+            name=request.POST['name']
+            email=request.POST['email']
+            branchname=request.POST['branchname']
+
+            password=request.POST['password']
+            phone=request.POST['phone']
+            city=request.POST['city']
+            state=request.POST['state']
+            country=request.POST['country']
+            pin=request.POST['pin']
+            image=request.FILES['image']
+
+            x=branch.objects.get(branchname=branchname)
+
+            if employee.objects.filter(name=name).exists():
+                return redirect('empreg')
+
+            else:
+                emp=employee(name=name,email=email,branchname=branchname,password=password,phone=phone,city=city,state=state,country=country,pin=pin,image=image,branchid=x)
+                emp.save()
+                return redirect('employeeshow')
+        else:
+            return redirect('empreg')
+    except:
+        return redirect('empreg')
+
+def employeeshow(request):
+    empty=employee.objects.all()
+    return render(request,'employeeshow.html',{'empty':empty})
+
+def delete(request,id):
+    employees=employee.objects.get(id=id)
+    employees.delete()
+    return redirect('employeeshow')
+def empedit(request,id):
+    return render(request,'empedit.html')
