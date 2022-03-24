@@ -79,7 +79,7 @@ def employeereg(request):
                 pin=request.POST['pin']
                 image=request.FILES['image']
 
-                x=branch.objects.get(id=request.session['brid'])
+                x=branch.objects.get(id=request.session['brid '])
 
                 if employee.objects.filter(name=name).exists():
                     return redirect('empreg')
